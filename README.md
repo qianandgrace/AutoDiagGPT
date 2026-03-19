@@ -21,12 +21,35 @@ https://zhuanlan.zhihu.com/p/104690176
 查询网上案例100个，再根据大模型扩充维修案例至300个
 
 ## 微调指令数据
-
+基于汽车故障知识库，设计数据增强策略，利用大模型进行语义改写与多样化生成，构建1000+高质量指令数据（单轮+多轮），用于大模型微调】
+利用rag input解析出 apalaca格式单轮指令集，包含解释类，建议类和诊断论
+然后利用chatglm(在汽车售后理解上表达仅次于chatgpt)扩充到1000条，包含950条单轮数据，50条多轮数据
+最终生成数据在car_finetune.json
 
 # 方案选型
 ## finetune
+基础模型选型，利用llama_factory自带的eval测评结果，对比一下模型：
+LLM-Research/Llama-3.2-3B-Instruct
+Qwen/Qwen2.5-3B-Instruct
+结果如下：
+| model | qwen1.5-0.5b-chat-hf | qwen1.5-1.8b-chat-hf |
+|----- | ----- | -----|
+| Llama-3.2-3B-Instruct| 48.75 | 48.75 |
+| Qwen2.5-3B-Instruct  | 50.00 | 50.17 |
+| Qwen2.5-1.5B-Instruct | 35.62 | 45.00 |
+| DeepSeek-R1-Distill-Qwen-1.5B| 35.04 | 50.63 |
+Qlora 效果
+
 ## rag
+数据清理 见第一部分
+chunk
+向量数据库
+检索
+
+advance skill使用
+
 
 # 最终部署与效果展示
+vllm模板一致性（导出llama_factory模板）
 
 
