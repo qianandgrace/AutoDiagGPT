@@ -29,7 +29,7 @@ MODEL_CONFIGS = {
     "vllm": {
         "base_url": "http://ai.bygpu.com:58111/v1",
         "api_key": "vllm",
-        "chat_model": "Qwen/Qwen3-4B"
+        "chat_model": "gpt-5-chat"
     }
 }
 
@@ -149,21 +149,13 @@ def initialize_embedding(llm_type: str = DEFAULT_LLM_TYPE):
 if __name__ == "__main__":
     try:
         # 测试不同类型的LLM初始化
-        llm_chat = initialize_llm("qwen")
-        messages = [
-            ChatMessage(
-                role="system", content="You are a pirate with a colorful personality"
-            ),
-            ChatMessage(role="user", content="What is your name"),
-        ]
-        resp = llm_chat.stream_chat(messages)
-        for r in resp:
-            print(r.delta, end="")
-        
+        llm_chat = initialize_llm("vllm")
+        resp = llm_chat.complete("你是谁")
+        print(resp)
         # 测试不同类型的Embedding初始化
-        llm_embedding = initialize_embedding("bge")
-        embeddings = llm_embedding.get_text_embedding("Hello, world!")
-        print(embeddings[:5])
-        print(len(embeddings))
+        # llm_embedding = initialize_embedding("bge")
+        # embeddings = llm_embedding.get_text_embedding("Hello, world!")
+        # print(embeddings[:5])
+        # print(len(embeddings))
     except LLMInitializationError as e:
         logger.error(f"程序终止: {str(e)}")

@@ -26,7 +26,7 @@ with gr.Blocks() as demo:
     gr.Markdown("## 🚗 汽车故障诊断系统")
     
     with gr.Row():
-        query_input = gr.Textbox(label="输入问题或故障码", placeholder="例如：我的车报了P1073故障码")
+        query_input = gr.Textbox(label="输入问题或故障码", placeholder="例如：我的车油耗越来越高了或我的车报了P0173故障码")
         submit_btn = gr.Button("查询")
 
     with gr.Row():

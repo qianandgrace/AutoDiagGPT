@@ -69,6 +69,11 @@ rerank
 
 # 最终部署与效果展示
 vllm模板一致性（导出llama_factory模板）
+VLLM_USE_MODELSCOPE=true vllm serve /home/bygpu/models/Qwen/Qwen2___5-3B-Instruct --port 7860 --max-model-len 800  --gpu-memory-utilization 0.95 --served-model-name gpt-5-chat
+
+VLLM_USE_MODELSCOPE=true vllm serve /home/bygpu/models/Qwen/Qwen2___5-3B-Instruct-vehicle-qlora --port 7860 --max-model-len 800  --gpu-memory-utilization 0.95 --served-model-name gpt-5-chat --chat-template /home/bygpu/models/Qwen/Qwen2___5-3B-Instruct-vehicle-qlora/chat_template.jinja
+
+demo
 后端：fastapi uvicorn api:app --reload --host 127.0.0.1 --port 8000
 前端：gradio python gradio_web.py
 

@@ -10,7 +10,7 @@ obd_path = r"C:\Users\qian gao\git_project\AutoDiagGPT\data_prepare\rag_data\obd
 case_path = r"C:\Users\qian gao\git_project\AutoDiagGPT\data_prepare\rag_data\final_dataset.json"
 vector_path="./chroma_db"
 embed_model = initialize_embedding("bge")
-llm = initialize_llm("qwen")
+llm = initialize_llm("vllm")
 index  = build_index(obd_path, case_path, persist_dir=vector_path, embed_model=embed_model)
 
 def generate_answer(query, nodes):
