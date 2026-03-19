@@ -1,0 +1,10 @@
+# runtime generated vector index
+chroma_db/
+
+# python cache
+__pycache__/
+*.pyc
+
+# optional: local data
+*.log
+*.tmp
