@@ -4,7 +4,7 @@ from llama_index.core.callbacks import LlamaDebugHandler, CallbackManager
 from rag_flow.build_index import build_index
 from rag_flow.llms import initialize_llm, initialize_embedding
 from rag_flow.retriever import retrieve
-
+from rag_flow.query_rewrite import rewrite_query
 
 obd_path = r"C:\Users\qian gao\git_project\AutoDiagGPT\data_prepare\rag_data\obd_codes.json"
 case_path = r"C:\Users\qian gao\git_project\AutoDiagGPT\data_prepare\rag_data\final_dataset.json"
@@ -55,7 +55,8 @@ def main(query):
     llama_debug = LlamaDebugHandler(print_trace_on_end=True)
     callback_manager = CallbackManager([llama_debug])
     Settings.callback_manager = callback_manager
-
+    
+    query = rewrite_query(query)
     nodes = retrieve(index, query)
    
     answer, sources = generate_answer(query, nodes)

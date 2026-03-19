@@ -48,7 +48,24 @@ Qlora 效果  效果显著
 分路召回，避免维修示例把结构知识冲掉或者引用的全是obd code数据过于死板
 
 advance skill使用
+prompt rewrite
+rerank
 
+最终流程
+用户 query
+   ↓
+🔹 Query Rewrite（规范化问题）
+   ↓
+🔹 Retrieve（多路召回）
+   ↓
+🔹 Rerank（重排序）
+   ↓
+🔹 构建带编号 context
+   ↓
+🔹 LLM（JSON + 引用）
+   ↓
+返回：
+  answer(JSON) + sources
 
 # 最终部署与效果展示
 vllm模板一致性（导出llama_factory模板）
