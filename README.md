@@ -29,27 +29,30 @@ https://zhuanlan.zhihu.com/p/104690176
 # 方案选型
 ## finetune
 基础模型选型，利用llama_factory自带的eval测评结果，对比一下模型：
-LLM-Research/Llama-3.2-3B-Instruct
-Qwen/Qwen2.5-3B-Instruct
+Qwen/Qwen2.5-3B-Instruct最均衡，选择此模型
 结果如下：
-| model | qwen1.5-0.5b-chat-hf | qwen1.5-1.8b-chat-hf |
+| model | predict_bleu-4 | predict_rouge-l|
 |----- | ----- | -----|
-| Llama-3.2-3B-Instruct| 48.75 | 48.75 |
-| Qwen2.5-3B-Instruct  | 50.00 | 50.17 |
-| Qwen2.5-1.5B-Instruct | 35.62 | 45.00 |
-| DeepSeek-R1-Distill-Qwen-1.5B| 35.04 | 50.63 |
-Qlora 效果
+| Llama-3.2-3B-Instruct| 2.01 | 9.79 |
+| Qwen2.5-3B-Instruct  | 2.83 | 9.50 |
+| Qwen2.5-1.5B-Instruct |2.79| 8.87 |
+| DeepSeek-R1-Distill-Qwen-1.5B| 3.39 | 7.93|
+Qlora 效果  效果显著
+| model | predict_bleu-4 | predict_rouge-l|
+|----- | ----- | -----|
+| Qwen2.5-3B-Instruct-Qlora| 42.72 | 55.38 |
 
 ## rag
 数据清理 见第一部分
-chunk
-向量数据库
-检索
+故障码直接查询，如果prompt里边有故障码直接查询
+分路召回，避免维修示例把结构知识冲掉或者引用的全是obd code数据过于死板
 
 advance skill使用
 
 
 # 最终部署与效果展示
 vllm模板一致性（导出llama_factory模板）
+后端：fastapi uvicorn api:app --reload --host 127.0.0.1 --port 8000
+前端：gradio python gradio_web.py
 
 
