@@ -8,3 +8,6 @@ __pycache__/
 # optional: local data
 *.log
 *.tmp
+
+# third-party libraries
+third_party/
